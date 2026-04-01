@@ -9,11 +9,22 @@ goods = {
     "kiwi": 75
 }
 
-print("Product list:")
-for good in goods:
-    print(good, "-", goods[good])
+cart = []
+while True:
+    print("Product list:")
+    for good in goods:
+        print(good, "-", goods[good])
 
-chosen_product = input("Choose the product: ")
-quantity = int(input("Quantity: "))
-total = goods[chosen_product] * quantity
-print("Total:", total)
+    choosen_product = input("Choose the product: ")
+    if choosen_product == "done":
+        break
+
+    quantity = int(input("Quantity: "))
+
+    cart.append((choosen_product, quantity))
+    tot = goods[choosen_product] * quantity
+    print(tot)
+print(cart)
+
+# total = goods[choosen_product] * quantity
+# print("Total:", total)
