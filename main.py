@@ -9,34 +9,54 @@ goods = {
     "kiwi": 75
 }
 
-cart = []
-while True:
+
+def show_goods(goods):
     print("Product list:")
     for good in goods:
         print(good, "-", goods[good])
 
+
+def get_goods(goods):
     choosen_product = input(
         "CHOOSE THE FRUIT (type in 'done' to complete your purchase): ")
 
     if choosen_product == "done":
-        break
+        return None
     if choosen_product not in goods:
-        print("The good is not in the list of goods. Try again!")
+        print("Sorry, we are out of this good. Try again!")
+        return get_goods(goods)
 
-    quantity = int(input("Quantity: "))
 
-    cart.append((choosen_product, quantity))
-    tot = goods[choosen_product] * quantity
+def get_quantity():
+    return int(input("Quantity: "))
+
+
+def print_reciept(cart, goods):
+    print("\n\n ---RECIEPT")
+    total = 0
+    for good in cart:
+        name = good[0]
+        quantity = good[1]
+        price = goods[name]
+        amount = price * quantity
+        print(f"{name:<8}  ({quantity} x {price} ntd = {amount}")
+        total += amount
+
+    print("\n ---TOTAL:", total)
+
+
+cart = []
+while True:
+    show_goods(goods)
+
+    choosen_good = get_goods(goods)
+    if choosen_good is None:
+        break
+
+    quantity = get_quantity()
+
+    cart.append((choosen_good, quantity))
+    tot = goods[choosen_good] * quantity
     print(tot)
 
-print("\n\n ---RECIEPT")
-total = 0
-for good in cart:
-    name = good[0]
-    quantity = good[1]
-    price = goods[name]
-    amount = price * quantity
-    print(f"{name} x {price} = {amount}")
-    total += amount
-
-print("\n ---TOTAL:", total)
+print_reciept(cart, goods)
