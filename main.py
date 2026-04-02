@@ -20,6 +20,8 @@ while True:
 
     if choosen_product == "done":
         break
+    if choosen_product not in goods:
+        print("The good is not in the list of goods. Try again!")
 
     quantity = int(input("Quantity: "))
 
