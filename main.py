@@ -15,7 +15,9 @@ while True:
     for good in goods:
         print(good, "-", goods[good])
 
-    choosen_product = input("Choose the product: ")
+    choosen_product = input(
+        "CHOOSE THE FRUIT (type in 'done' to complete your purchase): ")
+
     if choosen_product == "done":
         break
 
@@ -24,7 +26,15 @@ while True:
     cart.append((choosen_product, quantity))
     tot = goods[choosen_product] * quantity
     print(tot)
-print(cart)
 
-# total = goods[choosen_product] * quantity
-# print("Total:", total)
+print("\n\n ---RECIEPT")
+total = 0
+for good in cart:
+    name = good[0]
+    quantity = good[1]
+    price = goods[name]
+    amount = price * quantity
+    print(f"{name} x {price} = {amount}")
+    total += amount
+
+print("\n ---TOTAL:", total)
