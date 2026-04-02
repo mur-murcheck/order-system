@@ -40,7 +40,7 @@ def print_receipt(cart, goods):
         quantity = good[1]
         price = goods[name]
         amount = price * quantity
-        print(f"{name:<8}  ({quantity} x {price} ntd) = {amount}")
+        print(f"{name:<13} ({quantity} x {price} ntd) = {amount}")
         total += amount
 
     print("\n ---TOTAL:", total)
@@ -48,6 +48,8 @@ def print_receipt(cart, goods):
 
 cart = []
 while True:
+    if cart:
+        print()
     show_goods(goods)
 
     choosen_good = get_goods(goods)
@@ -59,14 +61,18 @@ while True:
     cart.append((choosen_good, quantity))
 
     tot = goods[choosen_good] * quantity
-    print(f"Added: {choosen_good} in quantity {quantity} = {tot} ntd")
+    print(f"\nAdded: {choosen_good} in quantity {quantity} = {tot} ntd")
 
     subtotal = 0
+    print("Current cart:")
     for good in cart:
         name = good[0]
         quantity = good[1]
-        subtotal += goods[name] * quantity
-    print("Subtotal:", subtotal)
-    print("Current cart:", cart)  # print(tot)
+        price = goods[name]
+        amount = price * quantity
+
+        print(name, quantity, "x", price, "ntd =", amount, "ntd")  # print(tot)
+        subtotal += amount
+    print("\nSubtotal:", subtotal)
 
 print_receipt(cart, goods)
