@@ -58,6 +58,13 @@ def get_quantity():
     if quantity <= 0:
         print("Quantity must be a gigit greater than zero.")
         return get_quantity()
+
+    if quantity > 100:
+        confirm = input(
+            "That seems like a lot. Are you sure? (y = yes/n = no): ").strip().lower()
+        if confirm != "y":
+            return get_quantity()
+
     return quantity
 
 
@@ -124,6 +131,6 @@ while True:
 
         print(name, quantity, "x", price, "ntd =", amount, "ntd")  # print(tot)
         subtotal += amount
-    print("\nSubtotal:", subtotal)
+    print("\nSubtotal:", subtotal, "ntd")
 
 print_receipt(cart, goods)
