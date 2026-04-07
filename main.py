@@ -1,3 +1,4 @@
+from datetime import datetime
 goods = {
     1: {"name": "apple", "price": 20},
     2: {"name": "banana", "price": 45},
@@ -17,7 +18,7 @@ store = {
 customer = {
     "name": input("Your name: "),
     "phone": input("Your phone number: "),
-    "address": input("Address for delivery:")
+    "address": input("Address for delivery: ")
 }
 
 
@@ -48,6 +49,9 @@ def get_quantity():
 def print_receipt(cart, goods):
     print("\n\n ---RECEIPT---")
     print()
+    now = datetime.now()
+    formatted_time = now.strftime("%Y-%m-%d %H:%M")
+    print("Date:", formatted_time)
     print("Store:", store["name"])
     print("Location:", store["location"])
     print()
@@ -64,7 +68,6 @@ def print_receipt(cart, goods):
         amount = price * quantity
         print(f"{name:<13} ({quantity} x {price} ntd) = {amount} ntd")
         total += amount
-
     print("\n ---TOTAL:", total, "ntd")
 
 
