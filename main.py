@@ -47,7 +47,18 @@ def get_goods(goods):
 
 
 def get_quantity():
-    return int(input("Quantity: "))
+    quantity = input("Quantity: ").strip()
+
+    try:
+        quantity = int(quantity)
+    except ValueError:
+        print("Please enter a valid number.")
+        return get_quantity()
+
+    if quantity <= 0:
+        print("Quantity must be a gigit greater than zero.")
+        return get_quantity()
+    return quantity
 
 
 def print_receipt(cart, goods):
