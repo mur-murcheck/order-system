@@ -9,6 +9,17 @@ goods = {
     8: {"name": "kiwi", "price": 75}
 }
 
+store = {
+    "name": "Leka Store",
+    "location": "Taichung, Taiwan"
+}
+
+customer = {
+    "name": input("Your name: "),
+    "phone": input("Your phone number: "),
+    "address": input("Address for delivery:")
+}
+
 
 def show_goods(goods):
     print("Product list:")
@@ -35,7 +46,15 @@ def get_quantity():
 
 
 def print_receipt(cart, goods):
-    print("\n\n ---RECEIPT")
+    print("\n\n ---RECEIPT---")
+    print()
+    print("Store:", store["name"])
+    print("Location:", store["location"])
+    print()
+    print("Customer:", customer["name"])
+    print("Phone:", customer["phone"])
+    print("Address:", customer["address"])
+    print("\n---------------------")
     total = 0
     for good in cart:
         code = good[0]
@@ -46,7 +65,7 @@ def print_receipt(cart, goods):
         print(f"{name:<13} ({quantity} x {price} ntd) = {amount} ntd")
         total += amount
 
-    print("\n ---TOTAL:", total)
+    print("\n ---TOTAL:", total, "ntd")
 
 
 cart = []
