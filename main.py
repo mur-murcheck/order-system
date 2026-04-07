@@ -1,29 +1,31 @@
 goods = {
-    "apple": 20,
-    "banana": 45,
-    "guava": 50,
-    "dragon fruct": 75,
-    "orange": 30,
-    "grape": 350,
-    "bala": 40,
-    "kiwi": 75
+    1: {"name": "apple", "price": 20},
+    2: {"name": "banana", "price": 45},
+    3: {"name": "guava", "price": 50},
+    4: {"name": "dragon fruct", "price": 75},
+    5: {"name": "orange", "price": 30},
+    6: {"name": "grape", "price": 350},
+    7: {"name": "bala", "price": 40},
+    8: {"name": "kiwi", "price": 75}
 }
 
 
 def show_goods(goods):
     print("Product list:")
-    for good in goods:
-        print(good, "-", goods[good])
+    for code in goods:
+        print(code, ":", goods[code]["name"], "-", goods[code]["price"], "ntd")
 
 
 def get_goods(goods):
     choosen_good = input(
-        "CHOOSE THE FRUIT (type in 'done' to complete your purchase): ")
+        "CHOOSE PRODUCT NUMBER (type in '0' to complete your purchase): ")
 
-    if choosen_good == "done":
+    if choosen_good == "0":
         return None
+    choosen_good = int(choosen_good)
+
     if choosen_good not in goods:
-        print("Sorry, we are out of this good. Try again!")
+        print("Sorry, this product does not exist. Try again!")
         return get_goods(goods)
     return choosen_good
 
@@ -36,11 +38,12 @@ def print_receipt(cart, goods):
     print("\n\n ---RECEIPT")
     total = 0
     for good in cart:
-        name = good[0]
+        code = good[0]
         quantity = good[1]
-        price = goods[name]
+        name = goods[code]["name"]
+        price = goods[code]["price"]
         amount = price * quantity
-        print(f"{name:<13} ({quantity} x {price} ntd) = {amount}")
+        print(f"{name:<13} ({quantity} x {price} ntd) = {amount} ntd")
         total += amount
 
     print("\n ---TOTAL:", total)
@@ -60,15 +63,17 @@ while True:
 
     cart.append((choosen_good, quantity))
 
-    tot = goods[choosen_good] * quantity
-    print(f"\nAdded: {choosen_good} in quantity {quantity} = {tot} ntd")
+    tot = goods[choosen_good]["price"] * quantity
+    print(
+        f"\nAdded: {goods[choosen_good]["name"]} in quantity {quantity} = {tot} ntd")
 
     subtotal = 0
     print("Current cart:")
     for good in cart:
-        name = good[0]
+        code = good[0]
         quantity = good[1]
-        price = goods[name]
+        name = goods[code]["name"]
+        price = goods[code]["price"]
         amount = price * quantity
 
         print(name, quantity, "x", price, "ntd =", amount, "ntd")  # print(tot)
