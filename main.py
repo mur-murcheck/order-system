@@ -30,11 +30,15 @@ def show_goods(goods):
 
 def get_goods(goods):
     choosen_good = input(
-        "CHOOSE PRODUCT NUMBER (type in '0' to complete your purchase): ")
+        "CHOOSE PRODUCT NUMBER (type in '0' to complete your purchase): ").strip()
 
     if choosen_good == "0":
         return None
-    choosen_good = int(choosen_good)
+    try:
+        choosen_good = int(choosen_good)
+    except ValueError:
+        print("Please enter a valid product number. Only an even digit 1 to 8.")
+        return get_goods(goods)
 
     if choosen_good not in goods:
         print("Sorry, this product does not exist. Try again!")
