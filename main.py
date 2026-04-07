@@ -3,7 +3,7 @@ goods = {
     1: {"name": "apple", "price": 20},
     2: {"name": "banana", "price": 45},
     3: {"name": "guava", "price": 50},
-    4: {"name": "dragon fruct", "price": 75},
+    4: {"name": "dragon fruit", "price": 75},
     5: {"name": "orange", "price": 30},
     6: {"name": "grape", "price": 350},
     7: {"name": "bala", "price": 40},
@@ -83,7 +83,16 @@ while True:
 
     quantity = get_quantity()
 
-    cart.append((choosen_good, quantity))
+    found = False
+    for i in range(len(cart)):
+        code = cart[i][0]
+        old_quantity = cart[i][1]
+        if code == choosen_good:
+            cart[i] = (code, old_quantity + quantity)
+            found = True
+            break
+    if not found:
+        cart.append((choosen_good, quantity))
 
     tot = goods[choosen_good]["price"] * quantity
     print(
