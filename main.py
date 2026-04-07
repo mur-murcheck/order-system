@@ -56,7 +56,7 @@ def get_quantity():
         return get_quantity()
 
     if quantity <= 0:
-        print("Quantity must be a gigit greater than zero.")
+        print("Quantity must be a digit greater than zero.")
         return get_quantity()
 
     if quantity > 100:
@@ -133,4 +133,7 @@ while True:
         subtotal += amount
     print("\nSubtotal:", subtotal, "ntd")
 
-print_receipt(cart, goods)
+if not cart:
+    print("\nCart is empty. No receipt generated.")
+else:
+    print_receipt(cart, goods)
