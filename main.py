@@ -27,7 +27,7 @@ def get_customer():
         print("Phone number must contain 10 digits and star with 09.")
         phone = input("Your phone number: ").strip()
 
-    address = input("Addres for delivery: ").strip()
+    address = input("Address for delivery: ").strip()
     while address == "":
         print("Address for delivery is required.")
         address = input("Address for delivery: ").strip()
@@ -43,26 +43,25 @@ def show_goods(goods):
     print("Product list:")
     for code in goods:
         print(code, ":", goods[code]["name"], "-", goods[code]["price"], "ntd")
-        print()
-        print("9: remove item from cart")
-        print("0: complete your order")
+    print()
+    print("x: remove item from cart")
+    print("0: complete your order")
 
 
 def get_goods(goods):
     choosen_good = input(
-        "CHOOSE PRODUCT NUMBER (type in '0' to complete your purchase): ").strip()
+        "CHOOSE PRODUCT NUMBER: ").strip()
 
     if choosen_good == "0":
         return None
+    if choosen_good.lower() == "x":
+        return "remove"
     try:
         choosen_good = int(choosen_good)
     except ValueError:
         print("Please enter a valid product number. Only an even digit 1 to 8.")
         return get_goods(goods)
     
-    if choosen_good == "x":
-        return "remove"
-
     if choosen_good not in goods:
         print("Sorry, this product does not exist. Try again!")
         return get_goods(goods)
@@ -96,28 +95,24 @@ def remove_from_card(cart, goods):
         print("Cart is empty, nothing to remove.")
         return cart
 
-    print("\nCurrent cart:")
-    for item in cart:
-        code =item[0]
-        quantity = item[1]
-        print(code, "-", goods[code]["name"], "x", quantity)
+    remove_code = input("Enter product code to remove: ").strip()
 
-        remove_code = input("Enter product code to remove: ").strip()
-
-        try:
-            remove_code = int(remove_code)
-        except ValueError:
-            print("Please enter a valid product code.")
-
-        for i in range(len(cart)):
-            code = cart[i][0]
-
-            if code == remove_code:
-                removed_item = cart.pop(i)
-                print(goods[removed_item[0]]["name"], "removed from cart")
-        
-        print("This product isnot in the cart.")
+    try:
+        remove_code = int(remove_code)
+    except ValueError:
+        print("Please enter a valid product code.")
         return cart
+
+    for i in range(len(cart)):
+        code = cart[i][0]
+
+        if code == remove_code:
+            removed_item = cart.pop(i)
+            print(goods[removed_item[0]]["name"], "removed from cart")
+            return cart
+        
+    print("This product isnot in the cart.")
+    return cart
 
 
 def print_receipt(cart, goods):
@@ -145,7 +140,7 @@ def print_receipt(cart, goods):
     print("\n ---TOTAL:", total, "ntd")
 
 
-custumer = get_customer()
+customer = get_customer()
 
 
 cart = []
