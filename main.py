@@ -15,11 +15,28 @@ store = {
     "location": "Taichung, Taiwan"
 }
 
-customer = {
-    "name": input("Your name: "),
-    "phone": input("Your phone number: "),
-    "address": input("Address for delivery: ")
-}
+
+def get_customer():
+    name = input("Your name: ").strip()
+    while name == "":
+        print("Name is required.")
+        name = input("Please type in your name: ").strip()
+    
+    phone = input("Your phone number: ")
+    while not phone.isdigit() or len(phone) != 10:
+        print("Phone number must contain 10 digits.")
+        phone = input("Your phone number: ").strip()
+
+    address = input("Addres for delivery: ").strip()
+    while address == "":
+        print("Address for delivery is required.")
+        address = input("Address for delivery: ").strip()
+
+    return {
+        "name": name,
+        "phone": phone,
+        "address": address
+    }
 
 
 def show_goods(goods):
@@ -93,6 +110,9 @@ def print_receipt(cart, goods):
     print("\n ---TOTAL:", total, "ntd")
 
 
+custumer = get_customer()
+
+
 cart = []
 while True:
     if cart:
@@ -118,7 +138,7 @@ while True:
 
     tot = goods[choosen_good]["price"] * quantity
     print(
-        f"\nAdded: {goods[choosen_good]["name"]} in quantity {quantity} = {tot} ntd")
+        f"\nAdded: {goods[choosen_good]['name']} in quantity {quantity} = {tot} ntd")
 
     subtotal = 0
     print("Current cart:")
