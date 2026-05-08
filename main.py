@@ -166,6 +166,9 @@ while True:
     if choosen_good == "remove":
         cart = remove_from_card(cart, goods)
         continue
+    if choosen_good == "clear":
+        cart = clear_cart(cart)
+        continue
 
     quantity = get_quantity()
 
