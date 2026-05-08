@@ -128,6 +128,7 @@ def clear_cart(cart):
     if confirm == "y":
         cart.clear()
         print("Cart cleared.")
+        print("\n")
     else:
         print("Cart was not cleared.")
 
@@ -170,10 +171,17 @@ while True:
 
     choosen_good = get_goods(goods)
     if choosen_good is None:
-        break
+        confirm = input("Complete your order? (y/n): ").strip().lower()
+
+        if confirm == "y":
+            break
+        else:
+            continue
+
     if choosen_good == "remove":
         cart = remove_from_card(cart, goods)
         continue
+    
     if choosen_good == "clear":
         cart = clear_cart(cart)
         continue
