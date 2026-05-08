@@ -98,7 +98,7 @@ def remove_from_card(cart, goods):
         print("Cart is empty, nothing to remove.")
         return cart
 
-    remove_code = input("Enter product code to remove: ").strip()
+    remove_code = int(input("Enter product code to remove: "))
 
     try:
         remove_code = int(remove_code)
@@ -122,6 +122,14 @@ def clear_cart(cart):
     if not cart:
         print("Cart is already empty.")
         return cart
+    
+    confirm = input("Are you sure you want to clear the cart? (y/n): ").strip().lower()
+
+    if confirm == "y":
+        cart.clear()
+        print("Cart cleared.")
+    else:
+        print("Cart was not cleared.")
 
     return cart
 
