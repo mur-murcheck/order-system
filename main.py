@@ -128,7 +128,7 @@ def clear_cart(cart):
     if confirm == "y":
         cart.clear()
         print("Cart cleared.")
-        print("\n")
+        
     else:
         print("Cart was not cleared.")
 
@@ -181,7 +181,7 @@ while True:
     if choosen_good == "remove":
         cart = remove_from_card(cart, goods)
         continue
-    
+
     if choosen_good == "clear":
         cart = clear_cart(cart)
         continue
