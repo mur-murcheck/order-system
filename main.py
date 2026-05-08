@@ -17,20 +17,20 @@ store = {
 
 
 def get_customer():
-    name = input("Your name: ").strip()
+    name = input("Your name: ")
     while name == "":
         print("Name is required.")
-        name = input("Please type in your name: ").strip()
+        name = input("Please type in your name: ")
     
     phone = input("Your phone number: ")
     while not phone.isdigit() or len(phone) != 10 or not phone.startswith("09"):
         print("Phone number must contain 10 digits and star with 09.")
-        phone = input("Your phone number: ").strip()
+        phone = input("Your phone number: ")
 
-    address = input("Address for delivery: ").strip()
+    address = input("Address for delivery: ")
     while address == "":
         print("Address for delivery is required.")
-        address = input("Address for delivery: ").strip()
+        address = input("Address for delivery: ")
 
     return {
         "name": name,
