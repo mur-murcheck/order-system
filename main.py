@@ -45,8 +45,9 @@ def show_goods(goods):
         print(code, ":", goods[code]["name"], "-", goods[code]["price"], "ntd")
     print()
     print("x: remove item from cart")
+    print("c: clear the cart")
     print("0: complete your order")
-
+    
 
 def get_goods(goods):
     choosen_good = input(
@@ -54,6 +55,8 @@ def get_goods(goods):
 
     if choosen_good == "0":
         return None
+    if choosen_good.lower() == "c":
+        return "clear"
     if choosen_good.lower() == "x":
         return "remove"
     try:
@@ -112,6 +115,14 @@ def remove_from_card(cart, goods):
             return cart
         
     print("This product isnot in the cart.")
+    return cart
+
+
+def clear_cart(cart):
+    if not cart:
+        print("Cart is already empty.")
+        return cart
+
     return cart
 
 
